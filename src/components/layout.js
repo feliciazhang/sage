@@ -1,13 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
-
-import "./layout.css"
+import NavBar from "./nav"
+import "../styles/layout.css"
 
 const Layout = ({ children }) => {
   return (
     <div className="sage-container">
-      <h1>sage</h1>
-      {/* nav goes here */}
+      {<NavBar/>}
       <main>{children}</main>
     </div>
   )

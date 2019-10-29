@@ -1,6 +1,11 @@
 :root {
+  @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap');
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
   --main-sage: #F1F3EC;
   --main-green: #558059;
+  --green-hover: #205325;
   --main-coral: #FF9078;
 }
 
@@ -15,9 +20,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--main-neutral);
+  background: var(--main-sage);
   color: var(--main-navy);
-  font-family: var(--font-montserrat);
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 22px;
 }
