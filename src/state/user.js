@@ -4,7 +4,7 @@ const initialState = {
 }
 
 // ACTIONS
-const INTRO_MODAL_SEEN = 'INTRO_MODAL_SEEN';
+const INTRO_MODAL_SEEN = 'INTRO_MODAL_SEEN'
 
 export const setHasSeenIntroModal = seen => ({
   type: INTRO_MODAL_SEEN, seen
@@ -19,7 +19,7 @@ const handleIntroModalSeen = (state, action) => (
 export default (state = initialState, action) => {
   switch (action.type) {
     case INTRO_MODAL_SEEN:
-       return handleIntroModalSeen(state, action)
+      return handleIntroModalSeen(state, action)
     default:
       return state;
   }
