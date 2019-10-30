@@ -20,7 +20,8 @@ DO NOT COMMIT A PACKAGE-LOCK! YARN ONLY
 Each individual page on the app (ex grocery list, meal plan, recipes). They are all wrapped in the same layout with a nav and header.
 
 **components**:  
-Individual parts of pages, and reusable bits
+Individual parts of pages, and reusable bits  
+When adding a new component, remember to export it from the `./components/index.js` file
 
 **state**:  
 Actions and reducers for the redux store
