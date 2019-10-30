@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <div className="sage-container">
       <h1>sage</h1>
       {/* nav goes here */}
-      <main>{children}</main>
+      <div>{children}</div>
     </div>
   )
 }
