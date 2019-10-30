@@ -2,7 +2,9 @@
 
 :root {
   --main-sage: #F1F3EC;
+  --main-sage-dark: rgb(229, 233, 218);
   --main-green: #558059;
+  --main-green-dark: #507554;
   --main-coral: #FF9078;
   --font-title: 'Montserrat', Arial, Helvetica, sans-serif;
   --font-body: 'Open Sans', Arial, Helvetica, sans-serif;

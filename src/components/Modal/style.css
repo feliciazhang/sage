@@ -30,10 +30,11 @@
 .sage-modal--heading {
   position: relative;
   background-color: var(--main-green);
-  padding: 8px;
+  padding: 8px 16px;
   border-radius: 5px 5px 0 0;
   color: white;
   font-size: 18px;
+  text-align: left;
 }
 
 .sage-modal--warning .sage-modal--heading {
@@ -45,6 +46,7 @@
   background-color: white;
   padding: 16px;
   border-radius: 0 0 5px 5px;
+  text-align: left;
 }
 
 .sage-modal--close {
