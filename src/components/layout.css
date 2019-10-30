@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap');
+
 :root {
   --main-sage: #F1F3EC;
   --main-green: #558059;
   --main-coral: #FF9078;
+  --font-title: 'Montserrat', Arial, Helvetica, sans-serif;
+  --font-body: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 html {
@@ -15,11 +19,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--main-neutral);
-  color: var(--main-navy);
-  font-family: var(--font-montserrat);
-  font-size: 16px;
-  line-height: 22px;
+  background: var(--main-sage);
+  color: var(--main-black);
+  font-family: var(--font-body);
+  font-size: 14px;
 }
 
 body * {
@@ -29,4 +32,11 @@ body * {
 .sage-container {
   padding: 24px 100px;
   text-align: center;
+}
+
+h1 {
+  font-family: var(--font-title);
+  margin: 0 0 16px;
+  color: var(--main-green);
+  font-size: 48px;
 }
