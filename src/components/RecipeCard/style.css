@@ -1,0 +1,57 @@
+.sage-recipe-card--wrapper {
+  width: 250px;
+  height: 250px;
+  box-shadow: -2px 10px 30px 5px rgba(161,161,161,0.5);
+  cursor: pointer;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid var(--main-green);
+  position: relative;
+  top: 0;
+  margin: 8px 8px 0 0;
+  padding: 16px;
+  text-align: left;
+}
+
+.sage-recipe-card--wrapper:hover {
+  border: 1px solid var(--main-green-dark);
+  top: -4px;
+}
+
+.sage-recipe-card {
+  overflow: hidden;
+  height: 100%;
+}
+
+.sage-recipe-card--title {
+  text-align: center;
+  font-size: 18px;
+  color: var(--main-green-dark);
+  margin: 0 0 8px;
+}
+
+.sage-recipe-card--description {
+  overflow: hidden;
+  margin: 0 0 16px;
+  max-height: 80px;
+}
+
+.sage-recipe-card--time,
+.sage-recipe-card--servings {
+  font-size: 12px;
+  margin: 0;
+}
+
+.sage-recipe-card--tags {
+  max-height: 24px;
+  margin: 16px 0 0;
+}
+
+.sage-recipe-card--tag {
+  background-color: var(--main-coral);
+  padding: 4px 8px;
+  font-size: 12px;
+  margin: 0 0 4px 4px;
+  border-radius: 3px;
+  display: inline-block;
+}

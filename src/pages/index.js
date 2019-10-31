@@ -28,7 +28,8 @@ const IndexPage = () => {
         healthier eating and better financial choices. There are 3 main views: the recipes tab
         where you will add, edit and view your recipes, the meal plan tab where you can plan
         your meals for each day of the week, and the shopping list tab which generates a shopping
-        list for you based on your meal plan.<br/><br/>
+        list for you based on your meal plan. In this iteration, the default shopping list will be
+        hard coded rather than generated, but still editable.<br/><br/>
         For this prototype, there is no backend functionality, so DO NOT REFRESH THE PAGE or your data
         will be lost.
         <div className="sage-intro-modal-actions">
