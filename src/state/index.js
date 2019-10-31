@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 
-import test from './test'
+import user from './user'
+import recipes from './recipes'
+import mealPlan from './mealPlan'
 
 export default combineReducers({
-  test
+  user,
+  recipes,
+  mealPlan
 })

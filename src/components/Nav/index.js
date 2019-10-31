@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
-import '../styles/nav.css'
+import './style.css'
 
 const Nav = () => (
   <div className="nav">
     <div className="nav-item title">
       sage
     </div>
+    <div className="link-container">
       <div className="nav-item">
         <Link className="nav-link" to="/meal-plan">
           meal plan
@@ -23,7 +24,8 @@ const Nav = () => (
           recipes
         </Link>
       </div>
+      </div>
   </div>
 );
 
-export default Nav;
+export default Nav
