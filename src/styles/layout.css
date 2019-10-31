@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap');
 
 :root {
-  @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap');
-  --font-title: 'Montserrat', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
-
   --main-sage: #F1F3EC;
   --main-sage-dark: rgb(229, 233, 218);
   --main-green: #558059;

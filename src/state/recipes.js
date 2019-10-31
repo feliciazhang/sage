@@ -1,16 +1,18 @@
+import { UNITS } from '../constants'
+
 // DEFAULT STATE
 const initialState = [{
   title: "Applesauce",
-  description: "Yummy applesauce-- quick and easy",
-  cookTime: { hours: 1, minutes: 0 },
+  description: "Yummy applesauce-- quick and easy" ,
+  cookTime: { hours: 1, min: 0 },
   servings: 6,
   ingredients: [
-    { quantityt: 5, unit: "NA", item: "apples"},
-    { quantityt: 0.5, unit: "CUPS", item: "water"},
-    { quantityt: 0.75, unit: "CUPS", item: "white sugar"},
-    { quantityt: 0.25, unit: "TSP", item: "cinnamon"}],
+    { quantityt: 5, unit: UNITS.CUPS, item: "apples"},
+    { quantityt: 0.5, unit: UNITS.CUPS, item: "water"},
+    { quantityt: 0.75, unit: UNITS.CUPS, item: "white sugar"},
+    { quantityt: 0.25, unit: UNITS.TSP, item: "cinnamon"}],
   steps: ["Put all ingredients together and blend"],
-  tags: ["snack"]
+  tags: ["snack", "snick", "snik", "snake", "twin", "snack", "snick", "snik", "snake", "twin"]
 }]
 
 // ACTIONS

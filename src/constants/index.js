@@ -6,4 +6,4 @@ export const UNITS = {
   NA: "n/a"
 }
 
-export const UNITS_DROPDOWN = UNITS.values().map(unit => ({ value: unit, label: unit }))
+export const UNITS_DROPDOWN = Object.values(UNITS).map(unit => ({ value: unit, label: unit }))
