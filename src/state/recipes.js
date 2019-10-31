@@ -12,7 +12,7 @@ const initialState = [{
     { quantityt: 0.75, unit: UNITS.CUPS, item: "white sugar"},
     { quantityt: 0.25, unit: UNITS.TSP, item: "cinnamon"}],
   steps: ["Put all ingredients together and blend"],
-  tags: ["snack", "snick", "snik", "snake", "twin", "snack", "snick", "snik", "snake", "twin"]
+  tags: ["snack"]
 }]
 
 // ACTIONS
