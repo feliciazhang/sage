@@ -10,7 +10,7 @@ const initialState = {
 }
 
 // ACTIONS
-const UPDATE_MEAL = 'ADD_RECIPE'
+const UPDATE_MEAL = 'UPDATE_MEAL'
 
 export const updateMeal = (day, meals) => ({
   type: UPDATE_MEAL, day, meals
