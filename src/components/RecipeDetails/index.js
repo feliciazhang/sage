@@ -1,14 +1,15 @@
 import React, { useState } from "react"
 import { useDispatch } from 'react-redux'
 
-import { Modal, Input, Button } from '../'
+import { Modal, Input, Button, Dropdown } from '../'
 import { updateRecipe, deleteRecipe } from '../../state/recipes'
+import { UNITS, UNITS_DROPDOWN } from '../../constants'
 
 import './style.css'
 
 const RecipeDetails = ({ recipe, onClose, index }) => {
   const [rec, setRec] = useState(recipe)
-  const { title, description, cookTime, servings, tags } = rec
+  const { title, description, cookTime, servings, tags, ingredients, steps } = rec
   const [showSaved, setShowSaved] = useState(false)
   const dispatch = useDispatch()
 
@@ -39,6 +40,8 @@ const RecipeDetails = ({ recipe, onClose, index }) => {
 
   return (
     <Modal title="Edit your recipe" isOpen={true} onClose={onClose}>
+      <Dropdown className="sage-units-dropdown" options={UNITS_DROPDOWN} selected={ingredients[0].unit}
+        onChange={(val) => console.log(val)} isSearchable={true} />
       <Input size="small" label="Title: " value={title} onChange={(val) => update("title", val)} />
       <Input size="small" label="Description: "
         value={description} onChange={(val) => update("description", val)} />
@@ -56,8 +59,8 @@ const RecipeDetails = ({ recipe, onClose, index }) => {
       <Input size="small" label="Tags: " value={tags.join(", ")}
         onChange={(val) => update("tags", arrayifyTags(val))}/>
       <p className="sage-recipe-modal--hint">Separate your tags with commas</p>
-      {showSaved && <p className="sage-recipe-modal--saved">Saved</p>}
       <Button className="sage-recipe-modal--delete" type="secondary" onClick={onDelete}>Delete</Button>
+      {showSaved && <p className="sage-recipe-modal--saved">Saved</p>}
     </Modal>
   )
 }
