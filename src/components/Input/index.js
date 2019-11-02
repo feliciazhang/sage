@@ -1,9 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import './style.css'
 
-const Input = (props) => (
-  <input className="sage-input" {...props}/>
-)
+// Size options are medium or small
+const Input = ({ label, size = "medium", value, ...props }) => {
+  const [inputValue, setInputValue] = useState(value)
+  const onInputChanged = (e) => {
+    const val = e.target.value
+    setInputValue(val)
+    props.onChange && props.onChange(val)
+  }
+
+  return (
+    <div className="sage-input--wrapper">
+      {label && <div className="sage-input--label">{label}</div>}
+      <input
+        className={`sage-input sage-input--${size}`}
+        {...props}
+        value={inputValue}
+        onChange={onInputChanged} />
+    </div>
+  )
+}
 
 export default Input
