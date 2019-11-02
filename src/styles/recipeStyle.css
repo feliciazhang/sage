@@ -1,7 +1,22 @@
 .sage-recipes-page {
   text-align: left;
+  position: relative;
+}
+
+.sage-recipes--toolbar {
+  display: flex;
+}
+
+.sage-recipes--toolbar .sage-input {
+  width: 750px;
 }
 
 .sage-recipes {
-  margin: 32px 0;
+  padding: 32px 8px;
+  width: 850px;
+}
+
+.sage-recipes--add {
+  margin: auto 0 auto 16px;
+  height: 32px;
 }

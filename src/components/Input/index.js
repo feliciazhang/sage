@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import './style.css'
 
 // Size options are medium or small
-const Input = ({ label, size = "medium", value, ...props }) => {
+const Input = ({ label, size = "medium", value, className, ...props }) => {
   const [inputValue, setInputValue] = useState(value)
   const onInputChanged = (e) => {
     const val = e.target.value
@@ -12,7 +12,7 @@ const Input = ({ label, size = "medium", value, ...props }) => {
   }
 
   return (
-    <div className="sage-input--wrapper">
+    <div className={`sage-input--wrapper ${className}`}>
       {label && <div className="sage-input--label">{label}</div>}
       <input
         className={`sage-input sage-input--${size}`}

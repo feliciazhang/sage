@@ -1,14 +1,15 @@
-import React, { useState } from "react"
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react"
+import { useSelector, useDispatch } from 'react-redux'
 
 import Layout from "../components/layout"
-import { RecipeCard, Modal, Input } from '../components'
+import { RecipeCard, Modal, Input, Button, RecipeDetails } from '../components'
+import { addRecipe } from '../state/recipes'
 
 import '../styles/recipeStyle.css'
 
 const EMPTY_RECIPE = {
-  title: "",
-  description: "" ,
+  title: "Title",
+  description: "Description" ,
   cookTime: { hours: 0, min: 0 },
   servings: 0,
   ingredients: [],
@@ -16,26 +17,13 @@ const EMPTY_RECIPE = {
   tags: []
 }
 
-// TODO: ADD/EDIT/DELETE recipes and show detail view
-
-const RecipeDetails = ({ recipe, onClose, onSave }) => {
-  const { title, description, cookTime, servings, tags } = recipe
-
-  return (
-    <Modal title="Edit your recipe" isOpen={true} onClose={onClose}>
-      <Input size="small" label="Title: " value={title} />
-      <Input size="small" label="Description: " value={description} />
-      <div className="sage-recipe-modal--cooktime">
-        <Input size="small" label="Cooktime: " value={title}/>hrs
-        <Input size="small" label="Title: " value={title}/>min
-      </div>
-    </Modal>
-  )
-}
-
 const RecipesPage = () => {
+  const dispatch = useDispatch()
   const savedRecipes = useSelector(state => state.recipes)
   const [recipes, setRecipes] = useState(savedRecipes)
+  useEffect(() => {
+    setRecipes(savedRecipes)
+  }, [savedRecipes])
   const [selectedRecipe, setSelectedRecipe] = useState(null)
 
   const filterRecipes = (value) => {
@@ -43,10 +31,19 @@ const RecipesPage = () => {
     setRecipes(filtered)
   }
 
+  const add = async () => {
+    const newIdx = savedRecipes.length
+    await dispatch(addRecipe(EMPTY_RECIPE))
+    setSelectedRecipe(newIdx)
+  }
+
   return (
     <Layout>
       <div className="sage-recipes-page">
-        <Input placeholder="Search recipes by title or by tag" onChange={filterRecipes} />
+        <div className="sage-recipes--toolbar">
+          <Input placeholder="Search recipes by title or by tag" onChange={filterRecipes} />
+          <Button className="sage-recipes--add" onClick={add}>Add recipe</Button>
+        </div>
         <div className="sage-recipes">
           {recipes.map((recipe, idx) =>
             <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(idx)} />)
@@ -55,8 +52,8 @@ const RecipesPage = () => {
         {selectedRecipe !== null &&
           <RecipeDetails
             recipe={recipes[selectedRecipe]}
+            index={selectedRecipe}
             onClose={() => setSelectedRecipe(null)}
-            onSave={() => {}}
           />
         }
       </div>
