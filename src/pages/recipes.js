@@ -1,8 +1,10 @@
-import React, { useState } from "react"
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react"
+import { useSelector, useDispatch } from 'react-redux'
 
 import Layout from "../components/layout"
 import { RecipeCard, Modal, Input } from '../components'
+
+import { updateRecipe } from '../state/recipes'
 
 import '../styles/recipeStyle.css'
 
@@ -16,19 +18,41 @@ const EMPTY_RECIPE = {
   tags: []
 }
 
-// TODO: ADD/EDIT/DELETE recipes and show detail view
+const RecipeDetails = ({ recipe, onClose, onSave, index }) => {
+  const [rec, setRec] = useState(recipe)
+  const { title, description, cookTime, servings, tags } = rec
+  const dispatch = useDispatch()
 
-const RecipeDetails = ({ recipe, onClose, onSave }) => {
-  const { title, description, cookTime, servings, tags } = recipe
+  const update = (section, value) => {
+    const newRecipe = {...rec, [section]: value}
+    setRec(newRecipe)
+    dispatch(updateRecipe(index, newRecipe))
+  }
+
+  const updateCookTime = (param, value) => {
+    update("cookTime", {...cookTime, [param]: value})
+  }
 
   return (
     <Modal title="Edit your recipe" isOpen={true} onClose={onClose}>
-      <Input size="small" label="Title: " value={title} />
-      <Input size="small" label="Description: " value={description} />
+      <Input size="small" label="Title: " value={title} onChange={(val) => update("title", val)} />
+      <Input size="small" label="Description: "
+        value={description} onChange={(val) => update("description", val)} />
       <div className="sage-recipe-modal--cooktime">
-        <Input size="small" label="Cooktime: " value={title}/>hrs
-        <Input size="small" label="Title: " value={title}/>min
+        <Input size="small" label="Cooktime: " value={cookTime.hours} type="number"
+          onChange={(val) => updateCookTime("hours", val)}/>
+        <div className="sage-recipe-modal--text">{cookTime.hours > 1 ? "hrs": "hr"}</div>
+        <Input size="small" value={cookTime.min} type="number" max={59}
+          onChange={(val) => updateCookTime("min", val)}/>
+        <div className="sage-recipe-modal--text">min</div>
       </div>
+      <Input className="sage-recipe-modal--servings"
+        type="number" size="small" label="Servings: " value={servings}
+        onChange={(val) => update("servings", val)}/>
+      <Input className="sage-recipe-modal--servings"
+        size="small" label="Tags: " value={tags.join(", ")}
+        onChange={(val) => update("tags", val)}/>
+      <p>Separate your tags with commas</p>
     </Modal>
   )
 }
@@ -36,6 +60,9 @@ const RecipeDetails = ({ recipe, onClose, onSave }) => {
 const RecipesPage = () => {
   const savedRecipes = useSelector(state => state.recipes)
   const [recipes, setRecipes] = useState(savedRecipes)
+  useEffect(() => {
+    setRecipes(savedRecipes)
+  }, [savedRecipes])
   const [selectedRecipe, setSelectedRecipe] = useState(null)
 
   const filterRecipes = (value) => {
@@ -55,6 +82,7 @@ const RecipesPage = () => {
         {selectedRecipe !== null &&
           <RecipeDetails
             recipe={recipes[selectedRecipe]}
+            index={selectedRecipe}
             onClose={() => setSelectedRecipe(null)}
             onSave={() => {}}
           />

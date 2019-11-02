@@ -5,3 +5,19 @@
 .sage-recipes {
   margin: 32px 0;
 }
+
+.sage-recipe-modal--cooktime {
+  display: flex;
+}
+
+.sage-recipe-modal--cooktime .sage-input {
+  width: 52px;
+}
+
+.sage-recipe-modal--text {
+  margin: auto 2px;
+}
+
+.sage-recipe-modal--servings {
+  width: 40px;
+}
