@@ -11,7 +11,7 @@ const initialState = [{
     { quantityt: 0.5, unit: UNITS.CUPS, item: "water"},
     { quantityt: 0.75, unit: UNITS.CUPS, item: "white sugar"},
     { quantityt: 0.25, unit: UNITS.TSP, item: "cinnamon"}],
-  steps: ["Put all ingredients together and blend"],
+  steps: "Put all ingredients together and blend",
   tags: ["snack"]
 }]
 
@@ -51,7 +51,6 @@ const handleUpdateRecipe = (state, action) => {
   clone[action.index] = action.recipe
   return clone
 }
-
 
 export default (state = initialState, action) => {
   switch (action.type) {

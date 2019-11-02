@@ -1,0 +1,21 @@
+.sage-dropdown .sage-dropdown__control {
+  border-color: var(--main-sage-dark);
+}
+
+.sage-dropdown .sage-dropdown__control:hover,
+.sage-dropdown .sage-dropdown__control--is-focused {
+  border-color: var(--main-green);
+}
+
+.sage-dropdown .sage-dropdown__control,
+.sage-dropdown .sage-dropdown__control--is-focused {
+  box-shadow: none;
+}
+
+.sage-dropdown .sage-dropdown__option--is-focused {
+  background-color: var(--main-sage);
+}
+
+.sage-dropdown .sage-dropdown__option--is-selected {
+  background-color: var(--main-green);
+}

@@ -1,0 +1,33 @@
+
+.sage-recipe-modal--cooktime {
+  display: flex;
+}
+
+.sage-recipe-modal--cooktime .sage-input,
+.sage-recipe-modal--servings .sage-input {
+  width: 52px;
+}
+
+.sage-recipe-modal--text {
+  margin: auto 2px;
+}
+
+.sage-recipe-modal--hint {
+  font-size: 12px;
+  margin: 0 0 0 44px;
+}
+
+.sage-recipe-modal--saved {
+  font-size: 16px;
+  padding: 4px 8px;
+  background-color: var(--main-green);
+  color: white;
+  position: absolute;
+  bottom: 16px;
+  right: 64px;
+  border-radius: 4px;
+}
+
+.sage-recipe-modal--delete {
+  margin: 16px 0 0 auto;
+}
