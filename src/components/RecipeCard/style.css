@@ -7,7 +7,6 @@
   border-radius: 6px;
   border: 1px solid var(--main-green);
   position: relative;
-  top: 0;
   margin: 8px 8px 0 0;
   padding: 16px;
   text-align: left;
@@ -15,7 +14,6 @@
 
 .sage-recipe-card--wrapper:hover {
   border: 1px solid var(--main-green-dark);
-  top: -4px;
 }
 
 .sage-recipe-card {
