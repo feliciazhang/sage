@@ -11,20 +11,7 @@ const initialState = [{
     { quantityt: 0.5, unit: UNITS.CUPS, item: "water"},
     { quantityt: 0.75, unit: UNITS.CUPS, item: "white sugar"},
     { quantityt: 0.25, unit: UNITS.TSP, item: "cinnamon"}],
-  steps: ["Put all ingredients together and blend"],
-  tags: ["snack"]
-},
-{
-  title: "Applesauce",
-  description: "Yummy applesauce-- quick and easy" ,
-  cookTime: { hours: 1, min: 0 },
-  servings: 6,
-  ingredients: [
-    { quantityt: 5, unit: UNITS.CUPS, item: "apples"},
-    { quantityt: 0.5, unit: UNITS.CUPS, item: "water"},
-    { quantityt: 0.75, unit: UNITS.CUPS, item: "white sugar"},
-    { quantityt: 0.25, unit: UNITS.TSP, item: "cinnamon"}],
-  steps: ["Put all ingredients together and blend"],
+  steps: "Put all ingredients together and blend",
   tags: ["snack"]
 }]
 
