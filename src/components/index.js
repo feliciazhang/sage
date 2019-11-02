@@ -5,6 +5,7 @@ import RecipeCard from './RecipeCard'
 import ExpansionPanel from './ExpansionPanel'
 import Input from './Input'
 import RecipeDetails from './RecipeDetails'
+import Dropdown from './Dropdown'
 
 export {
   Button,
@@ -13,5 +14,6 @@ export {
   Nav,
   RecipeCard,
   Input,
-  RecipeDetails
+  RecipeDetails,
+  Dropdown
 }
