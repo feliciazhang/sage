@@ -1,6 +1,6 @@
 // DEFAULT STATE
 const initialState = {
-  "Monday": [{ meal: "Applesauce", servings: 2 }, {meal: "Test Meal", servings: 2}],
+  "Monday": [{ meal: "Applesauce", servings: 2 }],
   "Tuesday": [],
   "Wednesday": [],
   "Thursday": [],
