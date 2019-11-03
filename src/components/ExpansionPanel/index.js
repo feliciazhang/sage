@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
-import { Button, Modal, Dropdown, Input } from "../"
+import { Button, Modal, Dropdown, Input, Delete } from "../"
 import { updateMeal } from "../../state/mealPlan"
 import "./style.css"
 import { useDispatch } from "react-redux"
@@ -23,12 +23,18 @@ const ExpansionPanel = ({ children, title, meals, recipeOptions }) => {
 
   const addMeal = () => {
     setAdding(false)
-    dispatch(
-      updateMeal(title, {
-        meal: recMeal,
-        servings: recServings,
-      })
-    )
+    const newMeals = meals
+    newMeals.push({
+      meal: recMeal,
+      servings: recServings,
+    })
+    dispatch(updateMeal(title, newMeals))
+  }
+
+  const deleteMeal = index => {
+    const clone = meals
+    clone.splice(index, 1)
+    dispatch(updateMeal(title, clone))
   }
 
   return (
@@ -45,21 +51,30 @@ const ExpansionPanel = ({ children, title, meals, recipeOptions }) => {
           </div>
         )}
       </div>
-      {expanded ? (
+      {expanded && (
         <div className="panel-content">
           <div className="panel-meals">
-            {meals.map(item => (
-              <div className="panel-meal" style={{ padding: "4px 8px" }}>
-                {item.meal + ", " + item.servings + " servings"}
+            {meals.map((item, index) => (
+              <div className="panel-meal">
+                <div className="meal-name">{item.meal + ": " }</div>
+                  <Input
+                    className="sage-recipe-modal--number servings-input"
+                    type="number"
+                    size="small"
+                    label="Servings: "
+                    value={item.servings}
+                    onChange={val => console.log(val)}
+                  />
+                <div className="panel-delete-meal">
+                  <Delete onClick={() => deleteMeal(index)} />{" "}
+                </div>
               </div>
             ))}
           </div>
           <div className="panel-add">
-            <Button onClick={() => setAdding(true)}>
-              + Add Meal
-            </Button>
+            <Button onClick={() => setAdding(true)}>+ Add Meal</Button>
           </div>
-          {adding ? (
+          {adding && (
             <Modal
               onClose={() => setAdding(false)}
               title={"Add Meal: " + title}
@@ -82,9 +97,9 @@ const ExpansionPanel = ({ children, title, meals, recipeOptions }) => {
                 <Button onClick={() => addMeal()}>Add Meal</Button>
               </div>
             </Modal>
-          ) : null}
+          )}
         </div>
-      ) : null}
+      )}
     </div>
   )
 }

@@ -31,15 +31,28 @@
 }
 
 .panel-content {
-  margin: 10px 0;
+  margin: 6px 0;
   padding-left: 20px;
   display: inline-block;
   width: 98%;
   height: fit-content;
 }
 
-.panel-input {
-
+.panel-delete-meal {
+  padding-left: 20px;
+  padding-top: 4px;
 }
 
+.panel-meal {
+  display: flex;
+}
 
+.servings-input {
+  padding-left: 10px;
+  margin: auto !important;
+  top: 20px;
+}
+
+.meal-name {
+  margin-top: 3px;
+}
