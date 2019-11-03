@@ -1,15 +1,51 @@
-
 .sage-recipe-modal--cooktime {
   display: flex;
 }
 
 .sage-recipe-modal--cooktime .sage-input,
-.sage-recipe-modal--servings .sage-input {
+.sage-recipe-modal--number .sage-input {
   width: 52px;
 }
 
 .sage-recipe-modal--text {
   margin: auto 2px;
+}
+
+.sage-recipe-modal--ingredients-wrapper {
+  margin-bottom: 24px;
+}
+
+.sage-recipe-modal--ingredients {
+  margin: 16px 0 8px;
+}
+
+.sage-recipe-modal--ingredients-row {
+  display: flex;
+  position: relative;
+}
+
+.sage-units-dropdown {
+  width: 96px;
+  margin: 0 8px;
+}
+
+.sage-recipe-modal--ingredients-row .sage-delete {
+  top: 12px;
+  right: 300px;
+}
+
+.sage-recipe-modal--steps {
+  width: 500px;
+  height: 100px;
+  border-radius: 6px;
+  outline: none;
+  border: solid 1px var(--main-sage);
+  font-family: var(--font-body);
+}
+
+.sage-recipe-modal--steps:hover,
+.sage-recipe-modal--steps:focus {
+  border: 1px solid var(--main-green);
 }
 
 .sage-recipe-modal--hint {
