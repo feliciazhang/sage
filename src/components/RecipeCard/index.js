@@ -13,7 +13,7 @@ const RecipeCard = ({ recipe, onClick }) => {
         <p className="sage-recipe-card--time">Total time: {cookTime.hours}hr {cookTime.min}min</p>
         <p className="sage-recipe-card--servings">Servings: {servings}</p>
         <div className="sage-recipe-card--tags">
-          {tags.map(tag => <span className="sage-recipe-card--tag">{tag}</span>)}
+          {tags.map((tag, idx) => <span key={idx} className="sage-recipe-card--tag">{tag}</span>)}
         </div>
       </div>
     </div>

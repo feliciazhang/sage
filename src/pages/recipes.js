@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 
 import Layout from "../components/layout"
-import { RecipeCard, Modal, Input, Button, RecipeDetails } from '../components'
+import { RecipeCard, Input, Button, RecipeDetails } from '../components'
 import { addRecipe } from '../state/recipes'
 
 import '../styles/recipeStyle.css'
@@ -46,7 +46,7 @@ const RecipesPage = () => {
         </div>
         <div className="sage-recipes">
           {recipes.map((recipe, idx) =>
-            <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(idx)} />)
+            <RecipeCard key={idx} recipe={recipe} onClick={() => setSelectedRecipe(idx)} />)
           }
         </div>
         {selectedRecipe !== null &&

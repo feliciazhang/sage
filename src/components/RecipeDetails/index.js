@@ -4,41 +4,46 @@ import { useDispatch } from 'react-redux'
 import { Modal, Input, Button, Dropdown, Delete } from '../'
 import { updateRecipe, deleteRecipe } from '../../state/recipes'
 import { UNITS, UNITS_DROPDOWN } from '../../constants'
+import { listWithId, withoutId } from '../../constants/utils'
 
 import './style.css'
 
 const EMPTY_INGREDIENT = { quantity: 0, unit: UNITS.CUPS, item: "" }
 
 const Ingredients = ({ ingredients, update }) => {
+  const [ing, setIng] = useState(listWithId(ingredients))
   const updateIngredients = (idx, param, value) => {
-    let clone = ingredients.splice(0)
+    let clone = ing.splice(0)
     clone[idx] = {...clone[idx], [param]: value}
-    update("ingredients", clone)
+    setIng(clone)
+    update("ingredients", withoutId(clone))
   }
 
   const deleteIngredient = (idx) => {
-    const clone = ingredients.splice(0)
+    const clone = ing.splice(0)
     clone.splice(idx, 1)
-    update("ingredients", clone)
+    setIng(clone)
+    update("ingredients", withoutId(clone))
   }
 
   const add = () => {
-    const clone = ingredients.splice(0)
+    const clone = ing.splice(0)
     clone.push(EMPTY_INGREDIENT)
-    update("ingredients", clone)
+    setIng(clone)
+    update("ingredients", withoutId(clone))
   }
 
   return (
     <div className="sage-recipe-modal--ingredients-wrapper">
       <div className="sage-recipe-modal--ingredients">Ingredients:</div>
-      {ingredients.map((row, idx) => (
-        <div className="sage-recipe-modal--ingredients-row">
+      {ing.map((row, idx) => (
+        <div className="sage-recipe-modal--ingredients-row" key={row.id}>
           <Input className="sage-recipe-modal--number"
             type="number" size="small" value={row.quantity}
             onChange={(val) => updateIngredients(idx, "quantity", val)} />
           <Dropdown className="sage-units-dropdown" options={UNITS_DROPDOWN} selected={row.unit}
             onChange={(val) => updateIngredients(idx, "unit", val)} isSearchable={true} placeholder="unit" />
-          <Input size="small" value={row.item}
+          <Input size="small" value={row.item} placeholder="Ingredient"
             onChange={(val) => updateIngredients(idx, "item", val)} />
           <Delete onClick={() => deleteIngredient(idx)} />
         </div>
