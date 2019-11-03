@@ -17,18 +17,14 @@ export const updateItem = items => ({
 
 // REDUCERS
 const handleUpdateItem = (state, action) => {
-  console.log(state)
-  console.log(action.items)
   return action.items
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_ITEM:
-      console.log("wyz")
       return handleUpdateItem(state, action)
     default:
-        console.log("wyzdfs")
       return state
   }
 }
