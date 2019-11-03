@@ -6,6 +6,7 @@ import ExpansionPanel from './ExpansionPanel'
 import Input from './Input'
 import RecipeDetails from './RecipeDetails'
 import Dropdown from './Dropdown'
+import Delete from './Delete'
 
 export {
   Button,
@@ -15,5 +16,6 @@ export {
   RecipeCard,
   Input,
   RecipeDetails,
-  Dropdown
+  Dropdown,
+  Delete
 }

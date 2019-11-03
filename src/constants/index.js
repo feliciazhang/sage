@@ -1,5 +1,5 @@
 export const UNITS = {
-  CUP: "cups",
+  CUPS: "cups",
   OZ: "oz",
   TSP: "tsp",
   TBSP: "tbsp",
