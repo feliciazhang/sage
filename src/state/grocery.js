@@ -2,7 +2,7 @@ import { UNITS } from '../constants'
 
 // DEFAULT STATE
 const initialState = [
-  { quantity: 1, unit: UNITS.CUP, item: "milk" },
+  { quantity: 1, unit: UNITS.CUPS, item: "milk" },
   { quantity: 15, unit: UNITS.OZ, item: "diced tomato" },
   { quantity: 1, unit: UNITS.NA, item: "bread" },
   { quantity: 1, unit: UNITS.NA, item: "pasta" }

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useSelector } from "react-redux"
 
 import { ExpansionPanel } from "../components"
@@ -8,19 +8,14 @@ import "../styles/mealPlanStyle.css"
 
 const MealPlanPage = () => {
   const savedPlan = useSelector(state => state.mealPlan)
-  const [plan, setPlan] = useState(savedPlan)
-
   const savedRecipes = useSelector(state => state.recipes)
-  const [recipes] = useState(savedRecipes)
 
-  const options = []
-  recipes.map(item => (options.push(
-    {value: item.title, label: item.title})))
+  const options = savedRecipes.map(item => ({ value: item.title, label: item.title }))
 
   return (
     <Layout>
-      {Object.entries(plan).map(meals => (
-        <ExpansionPanel title={meals[0]} meals={meals[1]} recipeOptions={options}/>
+      {Object.entries(savedPlan).map(meals => (
+        <ExpansionPanel key={meals[0]} title={meals[0]} savedMeals={meals[1]} recipeOptions={options}/>
       ))}
     </Layout>
   )
