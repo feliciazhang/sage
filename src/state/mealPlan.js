@@ -1,12 +1,12 @@
 // DEFAULT STATE
 const initialState = {
-  "monday": [{ meal: "Applesauce", servings: 2 }],
-  "tuesday": [],
-  "wednesday": [],
-  "thursday": [],
-  "friday": [],
-  "saturday": [],
-  "sunday": []
+  "Monday": [{ meal: "Applesauce", servings: 2 }, {meal: "Test Meal", servings: 2}],
+  "Tuesday": [],
+  "Wednesday": [],
+  "Thursday": [],
+  "Friday": [],
+  "Saturday": [],
+  "Sunday": []
 }
 
 // ACTIONS
