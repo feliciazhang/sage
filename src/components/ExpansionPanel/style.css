@@ -7,6 +7,7 @@
   border: 1px solid var(--main-green);
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .panel-title {
