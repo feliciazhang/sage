@@ -1,0 +1,22 @@
+.sage-delete {
+  position: absolute;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+}
+
+.sage-delete:before, .sage-delete:after {
+  position: absolute;
+  content: ' ';
+  height: 16px;
+  width: 2px;
+  background-color: var(--main-green-dark);
+}
+
+.sage-delete:before {
+  transform: rotate(45deg);
+}
+
+.sage-delete:after {
+  transform: rotate(-45deg);
+}
