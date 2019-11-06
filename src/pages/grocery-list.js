@@ -5,7 +5,7 @@ import { updateItem } from "../state/grocery"
 import { UNITS, UNITS_DROPDOWN } from '../constants'
 import { listWithId, withoutId } from '../constants/utils'
 import Layout from "../components/layout"
-import { Button, Input, Dropdown, Delete } from "../components"
+import { Button, Input, Dropdown, Delete, Modal } from "../components"
 
 import "../styles/grocery-list.css"
 
@@ -32,6 +32,9 @@ const GroceryListPage = () => {
   const groceries = useSelector(state => state.grocery)
   const [grocery, setGrocery] = useState(listWithId(groceries))
   const dispatch = useDispatch()
+  const [modalStep, setModalStep] = useState(0) // 0 is closed
+  const [email, setEmail] = useState('')
+  const [showError, setShowError] = useState(false)
 
   const add = (item) => {
     const moreGroceries = [...grocery]
@@ -56,7 +59,20 @@ const GroceryListPage = () => {
     const newList = withoutId(clone)
     dispatch(updateItem(newList))
   }
+
+  const handleEmailChange = (value) => {
+    setEmail(value)
+    setShowError(false)
+  }
   
+  const handleClickSend = () => {
+    if (email.includes("@")) {
+      setModalStep(2)
+    } else {
+      setShowError(true)
+    }
+  }
+
   return (
     <Layout>
       <div className="sage-grocery-list">
@@ -69,6 +85,22 @@ const GroceryListPage = () => {
           + Add item
         </Button>
       </div>
+      <Button className="sage-list--send" onClick={() => setModalStep(1)}>Send grocery list</Button>
+      <Modal
+        title="Send your grocery list"
+        onClose={() => setModalStep(0)}
+        size="small"
+        isOpen={modalStep > 0}>
+        {modalStep === 1 ? (
+          <div>
+            <Input size="small" className="sage-list-send-input" label="Email" onChange={handleEmailChange} />
+            {showError && <p className="sage-list--error">Please enter a valid email</p>}
+            <Button className="sage-list--send-button" onClick={handleClickSend}>Send</Button>
+          </div>
+        ): (
+          <p className="sage-list--sent">Your grocery list has been sent! Please check your inbox.</p>
+        )}
+      </Modal>
     </Layout>
   )
 }

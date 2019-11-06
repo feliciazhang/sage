@@ -47,3 +47,22 @@
   right: 75px;
   top: 12px;
 }
+
+.sage-list--send {
+  margin: 24px auto 0;
+}
+
+.sage-list--sent {
+  text-align: center;
+  padding: 16px;
+}
+
+.sage-list--error {
+  color: var(--main-coral);
+  font-size: 12px;
+  margin: 0 0 8px 44px;
+}
+
+.sage-list--send-button {
+  margin: auto;
+}
