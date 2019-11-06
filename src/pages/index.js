@@ -15,6 +15,7 @@ const IndexPage = () => {
   const onModalClose = () => {
     dispatch(setHasSeenIntroModal(true))
     setOpenModal(false)
+    window.location.href = "/recipes"
   }
 
   return (
