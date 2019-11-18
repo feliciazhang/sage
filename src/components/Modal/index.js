@@ -3,10 +3,10 @@ import React from 'react'
 import './style.css'
 
 // size options are: small, large
-const Modal = ({ title, onClose, children, size="large", isOpen=false, warning=false }) => {
+const Modal = ({ title, onClose, children, size="large", isOpen=false, warning=false, className }) => {
   const getClassname = () => {
     const warningName = warning ? ' sage-modal--warning' : ''
-    return warningName + ` sage-modal--${size}`
+    return warningName + ` sage-modal--${size} ` + className
   }
 
   return (
