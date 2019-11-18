@@ -67,3 +67,7 @@
 .sage-recipe-modal--save {
   margin: 16px 0 0 auto;
 }
+
+.sage-recipes-modal--error-button {
+  margin: 16px auto 0;
+}

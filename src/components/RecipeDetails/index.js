@@ -38,7 +38,7 @@ const Ingredients = ({ ingredients, update }) => {
       <div className="sage-recipe-modal--ingredients">Ingredients:</div>
       {ing.map((row, idx) => (
         <div className="sage-recipe-modal--ingredients-row" key={row.id}>
-          <Input className="sage-recipe-modal--number"
+          <Input className="sage-recipe-modal--number" min={0}
             type="number" size="small" value={row.quantity}
             onChange={(val) => updateIngredients(idx, "quantity", val)} />
           <Dropdown className="sage-units-dropdown" options={UNITS_DROPDOWN} selected={row.unit}
@@ -53,10 +53,11 @@ const Ingredients = ({ ingredients, update }) => {
   )
 }
 
-const RecipeDetails = ({ recipe, onClose, index }) => {
+const RecipeDetails = ({ recipe, onClose, index, isNew, onAdd }) => {
   const [rec, setRec] = useState(recipe)
   const { title, description, cookTime, servings, tags, ingredients, steps } = rec
   const [hasChanges, setHasChanges] = useState(false)
+  const [showInvalidModal, setShowInvalidModal] = useState(false)
   const dispatch = useDispatch()
 
   const update = (section, value) => {
@@ -85,21 +86,32 @@ const RecipeDetails = ({ recipe, onClose, index }) => {
     update("steps", value)
   }
 
+  const onClickSave = () => {
+    if (!rec.title) {
+      setShowInvalidModal(true)
+    } else if (isNew) {
+      onAdd(rec)
+    } else {
+      onSave()
+    }
+  }
+
   return (
     <Modal title="Edit your recipe" isOpen={true} onClose={() => onClose(hasChanges)}>
-      <Input size="small" label="Title: " value={title} onChange={(val) => update("title", val)} />
-      <Input size="small" label="Description: "
+      <Input size="small" placeholder="Title" label="Title*: "
+        value={title} onChange={(val) => update("title", val)} />
+      <Input size="small" label="Description: " placeholder="Description"
         value={description} onChange={(val) => update("description", val)} />
 
       <div className="sage-recipe-modal--cooktime">
-        <Input size="small" label="Cooktime: " value={cookTime.hours} type="number"
+        <Input min={0} size="small" label="Cooktime: " value={cookTime.hours} type="number"
           onChange={(val) => updateCookTime("hours", val)}/>
         <div className="sage-recipe-modal--text">{cookTime.hours > 1 ? "hrs": "hr"}</div>
-        <Input size="small" value={cookTime.min} type="number" max={59}
+        <Input min={0} size="small" value={cookTime.min} type="number" max={59}
           onChange={(val) => updateCookTime("min", val)}/>
         <div className="sage-recipe-modal--text">min</div>
       </div>
-      <Input className="sage-recipe-modal--number"
+      <Input className="sage-recipe-modal--number" min={0}
         type="number" size="small" label="Servings: " value={servings}
         onChange={(val) => update("servings", val)}/>
 
@@ -113,7 +125,18 @@ const RecipeDetails = ({ recipe, onClose, index }) => {
       <Input size="small" label="Tags: " value={tags.join(", ")}
         onChange={(val) => update("tags", arrayifyTags(val))}/>
       <p className="sage-recipe-modal--hint">Separate your tags with commas</p>
-      <Button className="sage-recipe-modal--save" onClick={onSave}>Save</Button>
+      <Button className="sage-recipe-modal--save" onClick={onClickSave}>Save</Button>
+
+      <Modal
+          size="small"
+          warning={true}
+          isOpen={showInvalidModal}
+          onClose={() => setShowInvalidModal(false)}
+          title="Cannot save recipe">
+          You must add a title for your recipe.
+          <Button className="sage-recipes-modal--error-button"
+            onClick={() => setShowInvalidModal(false)}>Okay</Button>
+        </Modal>
     </Modal>
   )
 }

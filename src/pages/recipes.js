@@ -8,8 +8,8 @@ import { addRecipe, deleteRecipe } from '../state/recipes'
 import '../styles/recipeStyle.css'
 
 const EMPTY_RECIPE = {
-  title: "Title",
-  description: "Description" ,
+  title: "",
+  description: "" ,
   cookTime: { hours: 0, min: 0 },
   servings: 0,
   ingredients: [],
@@ -27,16 +27,16 @@ const RecipesPage = () => {
   const [selectedRecipe, setSelectedRecipe] = useState(null)
   const [showCloseWarning, setShowClosedWarning] = useState(false)
   const [showDeleteWarning, setShowDeleteWarning] = useState(null)
+  const [newRecipe, setNewRecipe] = useState(false)
 
   const filterRecipes = (value) => {
     const filtered = savedRecipes.filter(recipe => recipe.title.toLowerCase().includes(value.toLowerCase()))
     setRecipes(filtered)
   }
 
-  const add = async () => {
-    const newIdx = savedRecipes.length
-    await dispatch(addRecipe(EMPTY_RECIPE))
-    setSelectedRecipe(newIdx)
+  const add = async (recipe) => {
+    await dispatch(addRecipe(recipe))
+    setNewRecipe(false)
   }
 
   const onCloseClicked = (hasChanges) => {
@@ -45,6 +45,7 @@ const RecipesPage = () => {
     } else {
       setShowClosedWarning(false)
       setSelectedRecipe(null)
+      setNewRecipe(false)
     }
   }
 
@@ -63,7 +64,7 @@ const RecipesPage = () => {
       <div className="sage-recipes-page">
         <div className="sage-recipes--toolbar">
           <Input placeholder="Search recipes by title or by tag" onChange={filterRecipes} />
-          <Button className="sage-recipes--add" onClick={add}>Add recipe</Button>
+          <Button className="sage-recipes--add" onClick={() => setNewRecipe(true)}>Add recipe</Button>
         </div>
         <div className="sage-recipes">
           {recipes.map((recipe, idx) =>
@@ -72,13 +73,17 @@ const RecipesPage = () => {
               onDeleteClick={(e) => onClickDelete(idx, e)} />)
           }
         </div>
-        {selectedRecipe !== null &&
+        
+        {(selectedRecipe !== null || newRecipe) &&
           <RecipeDetails
-            recipe={recipes[selectedRecipe]}
+            recipe={newRecipe ? EMPTY_RECIPE : recipes[selectedRecipe]}
             index={selectedRecipe}
+            isNew={newRecipe}
             onClose={(hasChanges) => onCloseClicked(hasChanges)}
+            onAdd={(recipe) => add(recipe)}
           />
         }
+
         <Modal
           size="small"
           warning={true}
@@ -89,9 +94,12 @@ const RecipesPage = () => {
           <div className="sage-recipes--warning-modal">
             <Button className="sage-recipes--modal-button"
               onClick={() => onCloseClicked(false)}>Exit without saving</Button>
-            <Button type="secondary" onClick={() => setShowClosedWarning(false)}>Cancel</Button>
+            <Button type="secondary" onClick={() => {setShowClosedWarning(false); setNewRecipe(false)}}>
+              Cancel
+            </Button>
           </div>
         </Modal>
+
         <Modal
           size="small"
           warning={true}
