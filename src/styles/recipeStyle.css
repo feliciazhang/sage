@@ -29,3 +29,8 @@
 .sage-recipes--modal-button {
   margin-right: 8px;
 }
+
+.sage-recipes--empty {
+  text-align: center;
+  font-size: 36px;
+}
