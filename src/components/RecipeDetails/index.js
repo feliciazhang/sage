@@ -8,7 +8,7 @@ import { listWithId, withoutId } from '../../constants/utils'
 
 import './style.css'
 
-const EMPTY_INGREDIENT = { quantity: 0, unit: UNITS.CUPS, item: "" }
+const EMPTY_INGREDIENT = { quantity: 0, unit: UNITS.NA, item: "" }
 
 const Ingredients = ({ ingredients, update }) => {
   const [ing, setIng] = useState(listWithId(ingredients))
@@ -97,7 +97,7 @@ const RecipeDetails = ({ recipe, onClose, index, isNew, onAdd }) => {
   }
 
   return (
-    <Modal title="Edit your recipe" isOpen={true} onClose={() => onClose(hasChanges)}>
+    <Modal title={isNew ? "Add recipe" : "Edit your recipe"} isOpen={true} onClose={() => onClose(hasChanges)}>
       <Input size="small" placeholder="Title" label="Title*: "
         value={title} onChange={(val) => update("title", val)} />
       <Input size="small" label="Description: " placeholder="Description"
