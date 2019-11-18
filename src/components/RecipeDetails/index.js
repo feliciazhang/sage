@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useDispatch } from 'react-redux'
 
 import { Modal, Input, Button, Dropdown, Delete } from '../'
-import { updateRecipe, deleteRecipe } from '../../state/recipes'
+import { updateRecipe } from '../../state/recipes'
 import { UNITS, UNITS_DROPDOWN } from '../../constants'
 import { listWithId, withoutId } from '../../constants/utils'
 
@@ -56,18 +56,19 @@ const Ingredients = ({ ingredients, update }) => {
 const RecipeDetails = ({ recipe, onClose, index }) => {
   const [rec, setRec] = useState(recipe)
   const { title, description, cookTime, servings, tags, ingredients, steps } = rec
-  const [showSaved, setShowSaved] = useState(false)
+  const [hasChanges, setHasChanges] = useState(false)
   const dispatch = useDispatch()
 
   const update = (section, value) => {
     const newRecipe = {...rec, [section]: value}
     setRec(newRecipe)
-    dispatch(updateRecipe(index, newRecipe))
+    setHasChanges(true)
+  }
 
-    setShowSaved(true)
-    setTimeout(() => {
-      setShowSaved(false)
-    }, 1000)
+  const onSave = () => {
+    dispatch(updateRecipe(index, rec))
+    setHasChanges(false)
+    onClose(false)
   }
 
   const updateCookTime = (param, value) => {
@@ -79,18 +80,13 @@ const RecipeDetails = ({ recipe, onClose, index }) => {
     return arr.map(tag => tag.trim())
   }
 
-  const onDelete = () => {
-    onClose()
-    dispatch(deleteRecipe(index))
-  }
-
   const updateSteps = (e) => {
     const { value } = e.target
     update("steps", value)
   }
 
   return (
-    <Modal title="Edit your recipe" isOpen={true} onClose={onClose}>
+    <Modal title="Edit your recipe" isOpen={true} onClose={() => onClose(hasChanges)}>
       <Input size="small" label="Title: " value={title} onChange={(val) => update("title", val)} />
       <Input size="small" label="Description: "
         value={description} onChange={(val) => update("description", val)} />
@@ -117,8 +113,7 @@ const RecipeDetails = ({ recipe, onClose, index }) => {
       <Input size="small" label="Tags: " value={tags.join(", ")}
         onChange={(val) => update("tags", arrayifyTags(val))}/>
       <p className="sage-recipe-modal--hint">Separate your tags with commas</p>
-      <Button className="sage-recipe-modal--delete" type="secondary" onClick={onDelete}>Delete</Button>
-      {showSaved && <p className="sage-recipe-modal--saved">Saved</p>}
+      <Button className="sage-recipe-modal--save" onClick={onSave}>Save</Button>
     </Modal>
   )
 }
