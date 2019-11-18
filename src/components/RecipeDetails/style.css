@@ -4,7 +4,7 @@
 
 .sage-recipe-modal--cooktime .sage-input,
 .sage-recipe-modal--number .sage-input {
-  width: 52px;
+  width: 75px;
 }
 
 .sage-recipe-modal--text {
@@ -64,6 +64,10 @@
   border-radius: 4px;
 }
 
-.sage-recipe-modal--delete {
+.sage-recipe-modal--save {
   margin: 16px 0 0 auto;
+}
+
+.sage-recipes-modal--error-button {
+  margin: 16px auto 0;
 }

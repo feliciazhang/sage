@@ -20,3 +20,12 @@
   margin: auto 0 auto 16px;
   height: 32px;
 }
+
+.sage-recipes--warning-modal {
+  margin: 16px auto 0;
+  display: flex;
+}
+
+.sage-recipes--modal-button {
+  margin-right: 8px;
+}
