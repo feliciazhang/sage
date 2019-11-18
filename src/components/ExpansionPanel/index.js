@@ -79,6 +79,7 @@ const ExpansionPanel = ({ children, title, meals, recipeOptions }) => {
               onClose={() => setAdding(false)}
               title={"Add Meal: " + title}
               isOpen={true}
+              className="modal-add"
             >
               <div className="panel-input">
                 <Dropdown
@@ -105,10 +106,6 @@ const ExpansionPanel = ({ children, title, meals, recipeOptions }) => {
 }
 
 ExpansionPanel.propTypes = {
-  /**
-   * The content of the expansion panel.
-   */
-  children: PropTypes.node.isRequired,
   /**
    * The main label that appears on the expansion panel
    */

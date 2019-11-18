@@ -18,7 +18,8 @@ const Input = ({ label, size = "medium", value, className, ...props }) => {
         className={`sage-input sage-input--${size}`}
         {...props}
         value={inputValue}
-        onChange={onInputChanged} />
+        onChange={onInputChanged}
+        min={0} />
     </div>
   )
 }

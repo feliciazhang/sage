@@ -1,5 +1,5 @@
 .panel-container {
-  width: 100%;
+  width: 800px;
   background-color: var(--main-sage-dark);
   height: fit-content;
   padding: 8px 0;
@@ -14,9 +14,15 @@
   float: left;
   font-size: 18px;
   color: var(--main-green-dark);
-  font-weight: 600;
-  padding-left: 25px;
-  padding-top: 1px;
+  font-weight: bold;
+  width: 500px;
+  text-align: left;
+  padding-left: 28px;
+}
+
+.panel-title--expanded {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--main-green-dark);
 }
 
 .panel-icon {
@@ -35,7 +41,6 @@
   margin: 6px 0;
   padding-left: 20px;
   display: inline-block;
-  width: 98%;
   height: fit-content;
 }
 
@@ -56,4 +61,8 @@
 
 .meal-name {
   margin-top: 3px;
+}
+
+.modal-add {
+  overflow-y: visible;
 }

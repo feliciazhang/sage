@@ -10,22 +10,22 @@ const Nav = () => (
     </div>
     <div className="link-container">
       <div className="nav-item">
-        <Link className="nav-link" to="/meal-plan">
-          meal plan
+        <Link className="nav-link" activeClassName="nav-link--active" to="/recipes/">
+          Recipes
         </Link>
       </div>
       <div className="nav-item">
-        <Link className="nav-link" to="/grocery-list">
-          grocery list
+        <Link className="nav-link" activeClassName="nav-link--active" to="/meal-plan/">
+          Meal plan
         </Link>
       </div>
       <div className="nav-item">
-        <Link className="nav-link" to="/recipes">
-          recipes
+        <Link className="nav-link" activeClassName="nav-link--active" to="/grocery-list/">
+          Grocery list
         </Link>
       </div>
       </div>
   </div>
-);
+)
 
 export default Nav
