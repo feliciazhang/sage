@@ -28,10 +28,17 @@ const RecipesPage = () => {
   const [showCloseWarning, setShowClosedWarning] = useState(false)
   const [showDeleteWarning, setShowDeleteWarning] = useState(null)
   const [newRecipe, setNewRecipe] = useState(false)
+  const [filters, setFilters] = useState([])
 
-  const filterRecipes = (value) => {
-    const filtered = savedRecipes.filter(recipe => recipe.title.toLowerCase().includes(value.toLowerCase()))
-    setRecipes(filtered)
+  const filterByTag = (tags) => {
+    const arr = tags.split(",")
+    setFilters(arr.map(tag => tag.trim()))
+  }
+
+  const filterRecipes = () => {
+    const filteredTags = savedRecipes.filter(recipe => recipe.tags.some(tag => filters.includes(tag)) ||
+      filters.some(tag => recipe.title.toLowerCase().includes(tag.toLowerCase())))
+    setRecipes(filteredTags)
   }
 
   const add = async (recipe) => {
@@ -63,9 +70,13 @@ const RecipesPage = () => {
     <Layout>
       <div className="sage-recipes-page">
         <div className="sage-recipes--toolbar">
-          <Input placeholder="Search recipes by title or by tag" onChange={filterRecipes} />
-          <Button className="sage-recipes--add" onClick={() => setNewRecipe(true)}>Add recipe</Button>
+          <Input placeholder="Search recipes by title or tag (separate keywords with commas)" onChange={filterByTag} />
+          <Button className="sage-recipes--add" onClick={filterRecipes}>Search</Button>
         </div>
+          <Button onClick={() => setNewRecipe(true)}>Add recipe</Button>
+        { recipes.length === 0 &&
+          <p className="sage-recipes--empty">No recipes found</p>
+        }
         <div className="sage-recipes">
           {recipes.map((recipe, idx) =>
             <RecipeCard key={idx} recipe={recipe}
