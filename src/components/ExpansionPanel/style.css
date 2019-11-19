@@ -39,7 +39,6 @@
 .panel-content {
   margin: 16px 0 0;
   display: inline-block;
-  width: 98%;
   height: fit-content;
 }
 
@@ -59,4 +58,8 @@
 
 .sage-recipe-modal--servings .sage-input {
   width: 52px;
+}
+
+.modal-add {
+  overflow-y: visible;
 }

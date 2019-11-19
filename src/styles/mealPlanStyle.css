@@ -1,6 +1,3 @@
-.panel-add {
-  float: right;
-}
 
 .panel-meal {
   font-size: 16px;
@@ -8,8 +5,13 @@
 }
 
 .panel-meals {
-  width: fit-content;
+  width: auto;
   float: left;
   text-align: left;
   height: fit-content;
+  padding-bottom: 8px;
+}
+
+.panel-add {
+  margin-left: 6px;
 }
