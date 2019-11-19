@@ -15,7 +15,7 @@ const IndexPage = () => {
   const onModalClose = () => {
     dispatch(setHasSeenIntroModal(true))
     setOpenModal(false)
-    window.location.pathname = window.location.pathname + "recipes"
+    window.location.pathname = window.location.pathname + "/recipes"
   }
 
   return (
