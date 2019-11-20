@@ -82,7 +82,7 @@ const ExpansionPanel = ({ title, savedMeals, recipeOptions }) => {
               onClose={() => setAdding(false)}
               title={"Add Meal: " + title}
               isOpen={true}
-              className="modal-add"
+              overflow={true}
             >
               <div className="panel-input">
                 <Dropdown
