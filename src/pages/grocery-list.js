@@ -75,6 +75,7 @@ const GroceryListPage = () => {
 
   return (
     <Layout>
+      <div className="sage-grocery-list-container">
       <div className="sage-grocery-list">
         <div className="sage-grocery-list--heading">Grocery list</div>
         {grocery.map((item, index) =>
@@ -86,6 +87,7 @@ const GroceryListPage = () => {
         </Button>
       </div>
       <Button className="sage-list--send" onClick={() => setModalStep(1)}>Send grocery list</Button>
+      </div>
       <Modal
         title="Send your grocery list"
         onClose={() => setModalStep(0)}
