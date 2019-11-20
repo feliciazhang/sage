@@ -88,13 +88,10 @@ const GroceryListPage = () => {
     }
   }
 
-  const onCloseClicked = (hasChanges) => {
-    if (hasChanges) {
-      setShowClosedWarning(true)
-    } else {
-      setShowClosedWarning(false)
-      setModalStep(1)
-    }
+  const onCloseClicked = () => {
+    setShowClosedWarning(false)
+    setModalStep(1)
+
   }
 
   return (
@@ -140,10 +137,10 @@ const GroceryListPage = () => {
           isOpen={showCloseWarning}
           onClose={() => setShowClosedWarning(false)}
           title="Are you sure?">
-          Your changes will be lost. Are you sure you want to exit?
+          Your recent changes have not been saved. Are you sure you want to send the outdated list?
           <div className="sage-recipes--warning-modal">
             <Button className="sage-recipes--modal-button"
-              onClick={() => onCloseClicked(false)}>Exit without saving</Button>
+              onClick={() => onCloseClicked(false)}>Continue without saving</Button>
             <Button type="secondary" onClick={() => setShowClosedWarning(false)}>Cancel</Button>
           </div>
         </Modal>
