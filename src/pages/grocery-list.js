@@ -10,13 +10,13 @@ import { Button, Input, Dropdown, Delete, Modal } from "../components"
 import "../styles/grocery-list.css"
 
 const GroceryItem = ({ listItem, onChange, handleDelete }) => {
-  const {quantity, unit, item, id} = listItem
+  const { quantity, unit, item, id } = listItem
   const onFieldChanged = (param, value) => {
-    onChange({...listItem, [param]: value})
+    onChange({ ...listItem, [param]: value })
   }
 
   return (
-    <div className="sage-grocery-list-item" key={id}> 
+    <div className="sage-grocery-list-item" key={id}>
       <Input type="number" size="small" className="sage-item-line-quantity"
         value={quantity} onChange={(value) => onFieldChanged("quantity", value)} />
       <Dropdown className="sage-item-line-unit" options={UNITS_DROPDOWN} selected={unit}
@@ -35,13 +35,20 @@ const GroceryListPage = () => {
   const [modalStep, setModalStep] = useState(0) // 0 is closed
   const [email, setEmail] = useState('')
   const [showError, setShowError] = useState(false)
+  const [hasChanges, setHasChanges] = useState(false)
+  const [showCloseWarning, setShowClosedWarning] = useState(false)
+
+  const save = () => {
+    dispatch(updateItem(grocery))
+    setHasChanges(false)
+  }
 
   const add = (item) => {
     const moreGroceries = [...grocery]
     moreGroceries.push(item)
     setGrocery(moreGroceries)
     const newList = withoutId(moreGroceries)
-    dispatch(updateItem(newList))
+    setHasChanges(true)
   }
 
   const update = (idx, item) => {
@@ -49,7 +56,7 @@ const GroceryListPage = () => {
     clone[idx] = item
     setGrocery(clone)
     const newList = withoutId(clone)
-    dispatch(updateItem(newList))    
+    setHasChanges(true)
   }
 
   const remove = (idx) => {
@@ -57,14 +64,14 @@ const GroceryListPage = () => {
     setGrocery(clone)
     clone.splice(idx, 1)
     const newList = withoutId(clone)
-    dispatch(updateItem(newList))
+    setHasChanges(true)
   }
 
   const handleEmailChange = (value) => {
     setEmail(value)
     setShowError(false)
   }
-  
+
   const handleClickSend = () => {
     if (email.includes("@")) {
       setModalStep(2)
@@ -73,19 +80,41 @@ const GroceryListPage = () => {
     }
   }
 
+  const handleSendIfSave = () => {
+    if (hasChanges) {
+      setShowClosedWarning(true)
+    } else {
+      setModalStep(1)
+    }
+  }
+
+  const onCloseClicked = () => {
+    setShowClosedWarning(false)
+    setModalStep(1)
+
+  }
+
   return (
     <Layout>
-      <div className="sage-grocery-list">
-        <div className="sage-grocery-list--heading">Grocery list</div>
-        {grocery.map((item, index) =>
-          <GroceryItem key={item.id} listItem={item} handleDelete={() => remove(index)}
-            onChange={(newItem) => update(index, newItem)}/>
-        )}
-        <Button className="sage-grocery-list--add" type='secondary' onClick={() => add({quantity: 0, unit: UNITS.NA, item: "item"})}>
-          + Add item
-        </Button>
+      <div className="sage-grocery-list-container">
+        <div className="sage-grocery-list">
+          <div className="sage-grocery-list--heading">Grocery list</div>
+          {grocery.map((item, index) =>
+            <GroceryItem key={item.id} listItem={item} handleDelete={() => remove(index)}
+              onChange={(newItem) => update(index, newItem)} />
+          )}
+          <div className="sage-grocery-list-button-container">
+            <Button className="sage-grocery-list--add" type='secondary' onClick={() => add({ quantity: 0, unit: UNITS.NA, item: "item" })}>
+              + Add item
+            </Button>
+            { hasChanges &&
+            <Button className="sage-grocery-list--save" onClick={save}>Save</Button>
+            }
+          </div>
+        </div>
+        <Button className="sage-list--send" onClick={handleSendIfSave}>Send grocery list</Button>
       </div>
-      <Button className="sage-list--send" onClick={() => setModalStep(1)}>Send grocery list</Button>
+
       <Modal
         title="Send your grocery list"
         onClose={() => setModalStep(0)}
@@ -97,10 +126,24 @@ const GroceryListPage = () => {
             {showError && <p className="sage-list--error">Please enter a valid email</p>}
             <Button className="sage-list--send-button" onClick={handleClickSend}>Send</Button>
           </div>
-        ): (
-          <p className="sage-list--sent">Your grocery list has been sent! Please check your inbox.</p>
-        )}
+        ) : (
+            <p className="sage-list--sent">Your grocery list has been sent! Please check your inbox.</p>
+          )}
       </Modal>
+      
+      <Modal
+          size="small"
+          warning={true}
+          isOpen={showCloseWarning}
+          onClose={() => setShowClosedWarning(false)}
+          title="Are you sure?">
+          Your recent changes have not been saved. Are you sure you want to send the outdated list?
+          <div className="sage-recipes--warning-modal">
+            <Button className="sage-recipes--modal-button"
+              onClick={() => onCloseClicked(false)}>Continue without saving</Button>
+            <Button type="secondary" onClick={() => setShowClosedWarning(false)}>Cancel</Button>
+          </div>
+        </Modal>
     </Layout>
   )
 }
