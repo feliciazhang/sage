@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { updateItem } from "../state/grocery"
 import { UNITS, UNITS_DROPDOWN } from '../constants'
-import { listWithId, withoutId } from '../constants/utils'
+import { listWithId } from '../constants/utils'
 import Layout from "../components/layout"
 import { Button, Input, Dropdown, Delete, Modal } from "../components"
 
@@ -47,7 +47,6 @@ const GroceryListPage = () => {
     const moreGroceries = [...grocery]
     moreGroceries.push(item)
     setGrocery(moreGroceries)
-    const newList = withoutId(moreGroceries)
     setHasChanges(true)
   }
 
@@ -55,7 +54,6 @@ const GroceryListPage = () => {
     let clone = grocery.splice(0)
     clone[idx] = item
     setGrocery(clone)
-    const newList = withoutId(clone)
     setHasChanges(true)
   }
 
@@ -63,7 +61,6 @@ const GroceryListPage = () => {
     const clone = grocery.splice(0)
     setGrocery(clone)
     clone.splice(idx, 1)
-    const newList = withoutId(clone)
     setHasChanges(true)
   }
 
@@ -91,7 +88,6 @@ const GroceryListPage = () => {
   const onCloseClicked = () => {
     setShowClosedWarning(false)
     setModalStep(1)
-
   }
 
   return (

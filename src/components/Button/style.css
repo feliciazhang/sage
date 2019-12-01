@@ -25,3 +25,9 @@
 .sage-button--secondary:hover {
   background-color: var(--main-sage-dark);
 }
+
+.sage-button:disabled {
+  background-color: #babfbc;
+  color: #5b5b5b;
+  cursor: not-allowed;
+}

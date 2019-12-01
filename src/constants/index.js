@@ -3,7 +3,7 @@ export const UNITS = {
   OZ: "oz",
   TSP: "tsp",
   TBSP: "tbsp",
-  NA: "n/a"
+  NA: "--"
 }
 
 export const UNITS_DROPDOWN = Object.values(UNITS).map(unit => ({ value: unit, label: unit }))

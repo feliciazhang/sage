@@ -98,7 +98,7 @@ const ExpansionPanel = ({ title, savedMeals, recipeOptions }) => {
                   value={1}
                   onChange={val => setRecServings(val)}
                 />
-                <Button onClick={() => addMeal()}>Add</Button>
+                <Button onClick={() => addMeal()} disabled={!recMeal}>Add</Button>
               </div>
             </Modal>
           )}
